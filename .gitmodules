@@ -1,0 +1,4 @@
+[submodule "lib/lv_drivers"]
+	path = lib/lv_drivers
+	url = https://github.com/thouters/lv_drivers
+	branch = ledmatrixsim
