@@ -1,7 +1,7 @@
 #include "lvgl.h"
 #include "lv_example_widgets.h"
 //#if LV_USE_BTN && LV_BUILD_EXAMPLES
-
+LV_IMG_DECLARE(ceiling_light);
 static void event_handler(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -32,8 +32,12 @@ void lv_example_btn_1(void)
     lv_label_set_text(label, "light");
 //    lv_label_set_align(label, LV_LABEL_ALIGN_CENTER);
 
-    lv_obj_t *sw1 = lv_switch_create(lv_scr_act());
-    lv_obj_align(sw1, LV_ALIGN_TOP_RIGHT, 0, 0);
+
+    lv_obj_t * img1 = lv_img_create(lv_scr_act());
+    lv_img_set_src(img1, &ceiling_light);
+    lv_obj_align(img1, LV_ALIGN_TOP_RIGHT, 0, 0);
+//    lv_obj_t *sw1 = lv_switch_create(lv_scr_act());
+//    lv_obj_align(sw1, LV_ALIGN_TOP_RIGHT, 0, 0);
 //    lv_obj_set_event_cb(sw1, event_handler);
     // todo: use default theme settings and in SDL glue check for != background or something
 }
