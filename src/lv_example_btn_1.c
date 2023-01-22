@@ -1,7 +1,8 @@
 #include "lvgl.h"
 #include "lv_example_widgets.h"
 //#if LV_USE_BTN && LV_BUILD_EXAMPLES
-LV_IMG_DECLARE(ceiling_light);
+LV_IMG_DECLARE(ceiling_light_rays);
+LV_IMG_DECLARE(ceiling_light_outline);
 static void event_handler(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -30,14 +31,14 @@ void lv_example_btn_1(void)
      label = lv_label_create(lv_scr_act());
     lv_obj_align(label, LV_ALIGN_LEFT_MID, 0, 0);
     lv_label_set_text(label, "light");
-//    lv_label_set_align(label, LV_LABEL_ALIGN_CENTER);
 
-
-    lv_obj_t * img1 = lv_img_create(lv_scr_act());
-    lv_img_set_src(img1, &ceiling_light);
-    lv_obj_align(img1, LV_ALIGN_TOP_RIGHT, 0, 0);
-//    lv_obj_t *sw1 = lv_switch_create(lv_scr_act());
-//    lv_obj_align(sw1, LV_ALIGN_TOP_RIGHT, 0, 0);
-//    lv_obj_set_event_cb(sw1, event_handler);
-    // todo: use default theme settings and in SDL glue check for != background or something
+    /*Create an Image button*/
+    lv_obj_t * imgbtn1 = lv_imgbtn_create(lv_scr_act());
+    lv_imgbtn_set_src(imgbtn1, LV_IMGBTN_STATE_RELEASED, NULL, &ceiling_light_outline, NULL);
+    lv_imgbtn_set_src(imgbtn1, LV_IMGBTN_STATE_PRESSED, NULL, &ceiling_light_outline, NULL);
+    lv_imgbtn_set_src(imgbtn1, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, &ceiling_light_rays, NULL);
+    lv_imgbtn_set_src(imgbtn1, LV_IMGBTN_STATE_CHECKED_PRESSED, NULL, &ceiling_light_rays, NULL);
+    lv_obj_add_flag(imgbtn1, LV_OBJ_FLAG_CHECKABLE);
+    lv_obj_set_width(imgbtn1, 24);
+    lv_obj_align(imgbtn1, LV_ALIGN_RIGHT_MID, 0, 0);
 }
